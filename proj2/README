@@ -1,0 +1,139 @@
+/**********************************************************
+* Proj2: Six Degrees of Collaboration
+* Comp 15
+* README
+* Caroline Chin
+*********************************************************/
+
+Phase 1: 10hrs 
+
+Testing:
+For week one, I used unit testing for the functions in CollabGraph.
+For each function, I created an instance of CollabGraph and manually
+populated the graph.Tested each function on empty graphs, graphs with
+one vertex, and graphs with multiples vertices.
+
+For testing how to read in files, I made a test file with fewer
+artists and also cerr the artists name and their songs and the stars 
+to make sure they were being separated correctly.
+
+Testing the command loop, I made a command file to test print and quit
+and also end of file.
+
+To finalize testing I diff tested the print function with the artists.txt 
+
+Phase 2: 15 hrs 
+
+Purpose: Takes in a file of artists and songs and creates a graph with given
+    data to connect artists through collaborations with other artists. Uses bfs
+    and dfs to connect artists.
+
+Acknowledgements: Sean, Annika, Randy, Pippa, Niall
+
+Files:
+
+    main.cpp: opens files, creates instance of SixDegrees, runs command loop
+        and closes files. Takes in files through command line.
+
+    SixDegrees.h: Contains function declarations for the SixDegrees class.
+        Also creates private member graph and artist list.
+
+    SixDegrees.cpp: Contains functions for the SixDegrees class. Reads in the
+        artist file and constructs graph. Also contains commmand loop.
+
+    CollabGraph.h: Contains function declarations for the CollabGraph class.
+        Includes private members vertex and edge.
+
+    CollabGraph.cpp: Contains functions for the CollabGraph class, allows
+        type CollabGraph to be modified.
+
+    Makefile: Creates rules for compiling, compiles ColllabGraph, SixDegrees,
+        and main.
+
+    unit_tests.h: Contains unit testing for week 1 of populate graph, 
+        get_vertex_neighbors, report path
+
+    bfs.txt: contains a mix of bfs commands to test the bfs command.
+        includes adding two of the same artists, artists with no path,
+        and artists with direct connection
+
+    dfs.txt: contains a mix of dfs commands to test the dfs command.
+        includes adding two of the same artists, artists with no path,
+        and artists with direct connection
+
+    not.txt: contains a mix of not commands to test the not command.
+        includes adding two of the same artists, artists with no path,
+        and artists with direct connection and a mix of excluded artists
+
+    commands.txt: tests a mix of commands with varying artists
+
+    README: Documentation of project. Includes general info and testing 
+        procedure
+
+Compile : make SixDegrees
+Run : ./SixDegrees dataFile [commandFile] [outputFile]
+
+Data Structures/ Algorithms: In this project the data structure used was a graph.
+    Graphs contain vertices and edges. There is no limit to how many or which vertices
+    a vertex is connected to, which is why using a graph for this project with many 
+    artists was so useful. Compared to previous data structures we have worked with 
+    graphs have less restrictions. They allow for cycles, vertices can point to 
+    themselves, and vertices do not need to have connections. Graphs can be directed 
+    and undirected, where edges are given direction or don't have direction. 
+    Edges can also be weighted or unweighted where edges contain a value or don't 
+    contain a value. Graphs are useful when dealing with data with many vertices 
+    and multiple connections.
+
+    To search the graphs, breadth first search and depth first search were used. 
+    Breadth first search searches the graph level by level to find the shortest
+    path possible between two nodes. It goes down one level and searches all of 
+    the nodes in that level to see if it matches the node we're looking for. 
+    To avoid cycles, vertices are marked as seen, if a vertex is marked as seen,
+    it will not be visited again.
+
+    For depth first search, it searches as far down the graph as possible. If 
+    nothing is found, it goes back to the last unvisited child and goes down 
+    the graph through another path. Similar to bfs, to avoid cycles, vertices 
+    are marked as visited and unvisited. 
+
+Testing: For week 1, unit testing was used to test the three functions.
+    For each function, I created an instance of CollabGraph and manually
+    populated the graph.Tested each function on empty graphs, graphs with
+    one vertex, and graphs with multiples vertices.
+
+    For testing how to read in files, I made a test file with fewer
+    artists and also cerr the artists name and their songs and the stars 
+    to make sure they were being separated correctly.
+
+    Testing the command loop, I made a command file to test print and quit
+    and also end of file.
+
+    To finalize testing I diff tested the print function with the artists.txt.
+
+    For week 2, as I was coding I used terminal to test, but after the code was
+    finalized, I diff tested using testing files I created. bfs.txt contains testing 
+    for the bfs command, dfs contains testing for the dfs command and not contains
+    testing for the not command. They all include repeated artists, artists not within
+    the dataset, and artists without a path.
+
+Questions: 
+    1) BFS finds the shortest path, while DFS finds any path between the two artists.
+        BFS uses a queue, while DFS uses a stack. BFS is slower than dfs. BFS is more
+        useful if we are looking for nodes close to the source while DFS is faster 
+        looking fo rnodes further from the source. In BFS, siblings are visited first,
+        while in DFS children are visted first.
+
+    2) I chose to implement not using BFS, not is just a variation of BFS, but if a
+        vertex was on the exclude list, the BFS would skip over that vertex and continue
+        searching through the other vertices. It's similar to the DFS algorithm in that
+        both mark vertices, but the search method is different.
+    
+    3) BFS, DFS, not
+        Total time complexity is O(|V| + |E|)
+
+        This is time complexity for BFS and DFS using an adjacency list. Worst case
+        scenario, all vertices and edges are visited, so it makes sense that this would 
+        be the time complaxity. Not is just a variation of BFS so the time complaxity 
+        should be the same.
+
+    KNOWN BUG: command loop stops if an unknown artist is read in
