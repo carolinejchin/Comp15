@@ -1,0 +1,92 @@
+----------------------------------------------------------------------
+|                      CS 15 HOMEWORK 1: LISTS                       |
+| [NAME] Caroline Chin                                               |
+| [DATE] 9/17/2021                                                   |
+----------------------------------------------------------------------
+
+                           ---- PURPOSE ----
+This program offers two different lists that store characters. They
+maintain the stored characters in their given order, with some extra
+features, such as the ability to concatenate lists.
+
+The program includes functions to manipulate ArrayLists and LinkedLists. Without 
+a driver, this program could be used to implement into other class files that 
+may contain ArrayLists or LinkedLists that need modifying. The user can also 
+create their own driver if needed.
+
+
+
+                      ---- ACKNOWLEDGEMENTS ----
+Lecture, Lecture Slides, TA Office Hours -> Jack, Josh, Kristin, Amy, probably 
+more. 
+
+                            ---- FILES ----
+README: Purpose of program, general information about the program including
+    compile instructions, data structures that were used.
+Makefile: Used to make compilation and unit testing easier, creates an  
+    executable allows for compilation of all files, and execution of unit test.
+unit_test.h: Contains test functions for all functions in CharArrayList.cpp and 
+    CharLinkedList.cpp. 
+CharArrayList.h: Contains declarations for CharArrayList.cpp. All variables and
+    new helper functions are made private members.
+CharArrayList.cpp: Contains function definitions for all functions and helper
+    functions. These functions help modify data in an ArrayList of type char.
+CharLinkedList.h: Contains declarations for CharLinkedList.cpp. All variables 
+    and new helper functions are made private members.
+CharLinkedList.cpp: Contains function definitions for all functions and helper
+    functions. These functions help modify data in a LinkedList of type char.
+
+                 ---- COMPILE / RUN INSTRUCTIONS ----
+Simply type "unit_test" to run the unit tests for the CharArrayList
+and CharLinkedList classes. This folder contains no driver, or
+application, besides the unit tests for the list classes.
+
+                ---- DATA STRUCTURES / ALGORITHMS ---- 
+ArrayLists: ArrayLists are a way to store data, in this program, we have access
+     to the ArrayList itself, the len(how many elements are being stored), and 
+     the capacity(how many elements the array list can hold). ArrayLists are 
+     efficient for accessing elements from any index, and also keeps data in a
+     fixed order. ArrayLists are relatively efficient for adding or removing 
+     elements from the back, however, adding or removing from the front is 
+     inefficient because the rest of the elements in the ArrayList either have 
+     be shifted forward or backward. The same is necessary for adding or 
+     removing from the middle, except not all elements need to be shifted. 
+     Arrays also have a fixed size so when the capacity is filled, the 
+     ArrayList needs to be expanded in order to hold more elements. This 
+     program contains functions that allow the user to access all elements,
+     add or remove any elements, replace any elements, or concatenate two 
+     ArrayLists.
+     
+LinkedLists: LinkedLists are also a method of storing data, in this program we 
+    have access to the front of the LinkedList, next and previous pointers for
+    each node, and the len of the LinkedList(# of nodes). LinkedLists are 
+    efficient for adding or removing from the front or near the front. When 
+    adding to a LinkedList, nodes do not have to be shifted, however, without a 
+    back pointer, it can be inefficient to add or remove from the back because
+    the back node can only be accessed by iterating through the rest of the 
+    nodes. LinkedLists are also not good for accessing elements anywhere in the 
+    list. Same with adding to the back, a loop is needed to get through all the
+    previous elements to access the desired element.
+    
+    Singly-LinkedLists nodes only have next pointers but doubly-LinkedLists nodes
+    have next and previous pointers. Doubly-LinkedLists are good for going
+    backwards in a LinkedList, and with a back pointer, can reach the last few 
+    elements of a LinkedList relatively quickly. Doubly-LinkedLists store more 
+    memory than singly-LinkedLists, and can also be harder to work with or keep 
+    track of because each node has two pointers.
+                           ---- TESTING ----
+As a general rule for testing every function, I tested each function on both 
+empty lists and lists with a varying number of elements. Breaking up the 
+function was helpful in both writing and testing the program. For example, for 
+insertAt in LinkedLists, I broke it down into four different cases, when the 
+idx was out of bounds, when the idx was 0(add to front), idx was equal to len 
+(add to back), and adding to the middle. Writing and testing case by case is 
+very efficient because testing individual parts and then moving through the 
+cases once previous ones work, ensure thorough testing and functionality. To 
+test a variety of indexes, I tested both negative indexes and indexes greater 
+than the size.
+
+
+                         ---- TIME SPENT ----
+25 hrs
+        

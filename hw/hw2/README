@@ -1,0 +1,175 @@
+/**********************************************************
+* HW2: Metro Simulator
+* Comp 15
+* README
+* Caroline Chin
+*********************************************************/
+
+Compile/run:
+     - Compile using
+            make MetroSim
+     - run executable with
+            ./MetroSim stationsFile passFile [commands]
+            
+Known Bugs: Train ends one station after the_MetroSim
+
+
+Program Purpose:
+
+This homework assignment simulates a running train to accommodate
+passengers arriving/departing a metro.  Learn how to design and
+modularize code and work with documented libraries.
+
+Allows user to control the green line by entering commands to add passengers 
+with an arrival and departure station, move the train, or end the simulation.
+Any list of stations can be inputted. The train loops around the stations when 
+it reaches the end. Adds passengers to stations, boards them onto train and 
+lets them off at appropriate station.
+
+
+Acknowledgements: 
+https://www.geeksforgeeks.org/vector-in-cpp-stl/ used for familiarizing vectors
+    and their built in functions 
+    
+CS15 File I/O handout used as reference to open, close and read in files 
+
+TA OH:
+Luxi - helped me with the design check off and setting up MetroSim
+Kristin - helped me with edge cases and starting early
+Annika - helped me for a really long time with debugging move and helper fns 
+
+Thank you!
+
+Files: 
+README: 
+    Purpose of program, general information about the program including
+    compile instructions, data structures that were used.
+    
+Makefile: 
+    Used to make compilation and unit testing easier, creates an  
+    executable allows for compilation of all files, and execution of unit test.
+
+unit_test.h: 
+    Contains test functions for all functions in PassengerQueue. 
+
+main.cpp:
+     STUDENT TO-DO: Main file should be short and handle simple driver
+     functions such as reading in files.
+     Includes MetroSim.h and creates an instance of MetroSim to create the 
+     simulation/read in stations and calls the run command loop function.
+     Also opens and closes all necessary files.
+
+MetroSim.cpp:
+     STUDENT TO-DO: Implementation of MetroSim class.  Main
+     functionality of running the Metro Simulation, should be able to
+     move trains and deal with passengers going on/off the train.
+     Includes a constructor to read in station file and populate the 
+     station_list vector.
+
+MetroSim.h:
+     STUDENT TO-DO: Interface of MetroSim class.
+     Declares all functions and some variables, all of which are private
+     except for the constructor and command loop function which are both called
+     in main.cpp.
+     
+PassengerQueue.cpp: 
+    Implementation of PassengerQueue class. Includes functions to manipulate 
+    and print vector/queue PassengerQueues. Includes dequeue from front and
+    queue to back functions for queue aspect.
+
+PassengerQueue.h:
+    Interface of PassengerQueue class. All functions are public so MetroSim can 
+    manipulate PassengerQueues in train and stations. Initiates a vector of
+    passengers.
+
+Passenger.cpp:
+    Implementation of Passenger class. Only includes a print function which 
+    prints a singular passenger.
+
+Passenger.h:
+    Interface of Passenger class. Includes two constructors, one default and 
+    one with given id, arrival, and departure. 
+
+stationtest.txt:
+    List of two stations used for testing on a shorter station list.
+    includes the names of all stations, one per line 
+
+stations.txt:
+     an example file containing a list of stations.
+     includes the names of all the stations, one per line
+     
+output.txt: 
+    Output file for ./MetroSim and contains all output statements from the 
+    program. used for diff testing with ./the_MetroSim outputtest.txt
+
+outputtest.txt:
+    Output file for ./the_MetroSim contains all output statements from the 
+    program. used for diff testing with ./MetroSim output.txt
+
+test_commands.txt:
+     sample list of commands that you could give to the simulator
+     one command per line 
+
+the_metroSim:
+     reference implementation for students to see how the program should handle 
+     all cases.
+
+Data Structures:
+Queues in the form of vectors were used throughout the program. The station list 
+and train were vectors containing passenger queues, which were also vectors.
+Vectors were really nice to use because they are already built into C++ and 
+came with functions that could manipulate and return the size of the vectors.
+Vectors are also very similar to ArrayLists, and since we had just finished hw1
+one ArrayLists, working with vectors was a lot easier. Queues were the right
+data structure to use because similar to real life, people have to wait their 
+turn to get on and off public transport. The spec also indicated that first
+at the station was first to board which aligns with the first on first off
+aspect of queues.
+
+Testing:
+
+For PassengerQueue functions, unit_tests were used for testing. I used a 
+similar method of testing from the last hw where different sized PassengerQueues
+were tested and also included some failed tests to test for edge cases. For 
+reading in the station file, the stationtest.txt was used to make sure stations 
+were being read and added to the stations_list before working with a larger 
+file. When writing the command loop, I used a lot of cerr statements before 
+putting in the actual functions to make sure the right part of the query loop 
+was being accessed. One issue I ran into while testing was that for the command 
+p, it was one string command followed by two ints, and for the command m it
+was also on string but was followed by another string. I initially had the 
+first and second element read at the same time as type string, but then realized 
+I had to switch the type for passengers and read in the second and third ints 
+within the p command. 
+
+For the move function, I had some helper functions which 
+made it a bit easier to work with and also think about conceptually. I ran into 
+a lot of issues with my move function. For example, my board function was 
+supposed to board only one passenger but I had it boarding all of the passengers
+in the station with a for loop. I had ended up making the same for loop in the
+move function when I called the board function, so it was looping twice. I 
+ended up delating the for loop in the board function, but was still having 
+issues. With the help of TAs we were able to find that in my for loop I had 
+i < station_list.at(train_index - 1).queue.size(), but as the for loop was being 
+called, the size was shrinking as board was dequeueing passengers from the 
+station. To fix this, an int was created to store the size without it changing.
+Additionally, in that same for loop I was calling 
+board_train(station_list.at(train_index - 1).queue.at(i)) instead of
+board_train(station_list.at(train_index - 1).queue.at(0)). 
+In a list of three 1, 2, 3, 1 would be dequeued and then i would index up to 1
+and the new list would be 2, 3. It would then dequeue the element with index 1
+which is three and leave 2 still at the station. To fix this I changed i to 0
+so the first element would always be dequeued.
+
+In my move function I also only had train_index++ and didn't account for the 
+train looping around until I was testing with the commands. I set up an if 
+statement to fix this issue.
+
+Part that you found most difficult:
+
+It was really confusing when indexing a specific passenger within a 
+PassengerQueue within a train car within a train with index based 1. Required
+a lot of code to access one passenger and made it difficult to think about. 
+Also caused some issues when debugging.
+
+Time: 32hrs

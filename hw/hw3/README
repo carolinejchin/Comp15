@@ -1,0 +1,87 @@
+----------------------------------------------------------------------
+|                 CS 15 HOMEWORK 3: Binary Search Trees              |
+| [NAME] Caroline Chin                                               |
+| [DATE] 11/18/2021                                                  |
+----------------------------------------------------------------------
+
+                           ---- PURPOSE ----
+This program allows the user to store data, integers, into Binary 
+Search Trees. The program provides functions the user can use to 
+manipulate, search, and create binary search trees. The user can 
+create their own driver to run their own program with binary 
+search trees or use the given driver.
+
+                      ---- ACKNOWLEDGEMENTS ----
+TAs: Irene, Sean, Randy, Alessandra, Nick, Mateo
+
+                            ---- FILES ----
+README: Purpose of program, general information about the program including
+    compile instructions, data structures that were used.
+Makefile: Used to make compilation and unit testing easier, creates an  
+    executable allows for compilation of all files, and execution of unit test.
+unit_tests.h: Contains test functions for all functions/helper functions in
+    BinarySearchTree.cpp
+BinarySearchTree.h: Contains declarations for BinarySearchTree.cpp. All variables 
+    and helper functions are made private members. Includes Node definition and 
+    root declaration.
+BinarySearchTree.cpp: Contains function definitions for all functions and helper
+    functions in the class BinarySearchTree. These functions help modify and 
+    search for data in a binary search tree.
+hw3.cpp: The given driver file for hw3. Includes a list of commands to create
+    and manipulate a binary search tree. Also used to difftest against the_hw3.
+
+                 ---- COMPILE / RUN INSTRUCTIONS ----
+Compile with "make" and run with "./hw3". Run and compile unit testing with "unit_test".
+
+                ---- DATA STRUCTURES / ALGORITHMS ---- 
+Binary Search Trees are trees that can only have a maximum of two children. Binary
+search trees are also organized so at every node, all nodes with data smaller than 
+the given node are in the left subtree of the given node, and all nodes with data 
+larger than hte given node are in the right subtree. This makes finding elements a
+lot easier and more efficient for both the computer and the programmer. 
+
+                           ---- TESTING ----
+For this homework, most of the testing was done through unit tests. It was very effiecient because there were
+so many functions to test and being able to isolate functions in testing was very helpful. In the end when all of my
+functions passed unit testing, I diff tested my hw3 with the demo hw3 and successfully diff tested.
+
+Remove: For the remove function testing, I created six functions for unit testing to test different 
+    cases. The first test tests for removing nodes from an empty tree, removing from a tree with a single node,
+    and removing nodes with no children. The second test focuses on testing removing nodes with two children
+    from diffrent spots in the tree. The third test tests removing functions with only right children by making a tree
+    with nodes only in each other's right subtree, and removing nodes from the top, middle, and bottom of the tree.
+    The same thing was done for the fourth test but with nodes only having a left child. The fifth test tests for 
+    removing nodes with duplicates/counts greater than one, and nonexistent nodes. The sixth test is mostly within the 
+    right subtree, but contains a mix of remove commands on a tree. For each remove test, I removed elements one at a time to 
+    make sure the nodes were being removed and rearranged correctly, and I printed the initial and final tree for each test. Assert
+    was also used to make sure the working remove commands returned true.
+
+    For all the other functions, the general rule was testing the functions on binary search trees with no nodes, one node, and
+    multiple nodes. For these tests I also used assert statements when I could and printed the tree.
+
+Other Questions
+1) My remove function will use the find_min function because under the remove section in the spec, when a node being removed has two children, the 
+smallest value in the right subtree becomes the new node. Once the old node is deleted, we search for the smallest value in the right subtree by calling the private find_min function with node as the parameter and make that node the new parent
+
+2) find_min and find_max will always point to a valid node because it always searches within the tree and it does not leave the tree. 
+
+3)b) 4
+
+4) when the end of the tree is reached, return that node
+    recurse down the left subtree because smallest values lay on the left of the tree
+
+5) when the end of the tree is reached, return that node
+    recurse down the right subtree because smallest values lay on the right of the tree
+
+6) when end of tree is reached, exit
+    recurse through left subtree
+    recurse through right subtree
+    delete the node and its contents
+
+                         ---- TIME SPENT ----
+20 hrs
+
+note: sorry for the extremely long remove function, I tried to make a helper function but it made my remove not work
+    so I left it at 60 lines 
+
+
