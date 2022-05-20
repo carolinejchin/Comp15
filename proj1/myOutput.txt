@@ -1,0 +1,12 @@
+56000
+Error: expected rstring in if branch
+8714
+Error: expected rstring in if branch
+t: unimplemented
+8714
+Error: empty_stack
+Error: expected boolean in if test
+Error: empty_stack
+Error: expected boolean in if test
+Error: empty_stack
+Thank you for using CalcYouLater.

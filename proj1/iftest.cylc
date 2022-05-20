@@ -1,0 +1,32 @@
+#f
+{ 5871 8015 + }
+{ 47821 8179 + }
+if 
+print 
+#f 
+4
+{ 8714 }
+if 
+print 
+#t 
+{ t }
+99
+if
+print 
+clear
+print 
+7
+{ 7 }
+{ 29048 }
+if 
+print 
+4
+6
+87
+if
+print 
+#t 
+{ 7 9 + 4 - 21 mod}
+{ 4 3 + 54 - 2 mod }
+if 
+print 

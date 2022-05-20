@@ -1,0 +1,159 @@
+/**********************************************************
+* Proj1: CalcYouLater
+* Comp 15
+* README
+* Caroline Chin
+*********************************************************/
+
+Week 1
+Phase 0, 1
+
+Compile/run:
+     - Compile using
+            unit_test
+            clang++ -o parser -Wall -Wextra parser.cpp
+     - run executable with
+            unit_test for unit tests for DatumStack.cpp 
+              functions
+            ./parser for parser test
+
+DatumStack: Tested using unit tests in the unit_tests.h file
+            All functions from DatumStack.cpp are tested in  
+              this file on varying sizes of DatumStacks
+            Note: needs main function in parser.cpp to be 
+              commented out in order for unit_test to compile 
+
+Paser.cpp: main function insdie parser.cpp to open test file,  
+              run parser function and close test file.
+           to test, compile only parser.cpp, run with ./parser 
+           only compiles when main is not commented out
+
+Parser.cyl: Test file for parser.cpp 
+
+Week 2
+Purpose: Create a functioning RPN calculator which can take commands
+through cin or a file. It also takes commands other than just basic
+operations and can evaulate rstrings of RPN notation. 
+Implemented using a stack.
+
+Acknowledgements: Ellis, Jolie, Amelia, Sean R, Irene, Kiran, Jack, 
+                  Annika, Matt H, Spencer, Victoria, Grace, Mateo,
+                  Kristin, Roger for VSCode and more :) 
+
+Files:
+
+DatumStack.h
+  Header file for the DatumStack class, contains declarations of
+  functions used in the DatumStack class and also creates a private
+  DatumStack.
+
+DatumStack.cpp
+  Implementation of DatumStack class and includes all the functions 
+  that can be used for manipulating or creating DatumStacks.
+
+unit_tests.h
+  Used for testing all of the DatumStack functions. Each function
+  was tested for at least one empty DatumStack and one populated
+  DatumStack.
+
+RPNCalc.h
+    Header file for the RPNCalc class, contains declarations of
+    functions used in the RPNCalc class and also creates a private
+    DatumStack. Also includes run function and helper functions
+    for running the calculator.
+
+RPNCalc.cpp
+  Implementation of RPNCalc class, includes command loop for
+  the calculator and calls appropriate helper functions to
+  aid in running the program.
+
+main.cpp
+  Creates an instance of the RPNCalc class and calls the run
+  function.
+
+Makefile
+  Includes rules and creates .o files for compilation.
+  Includes rules for ./CalcYouLater and unit testing.
+
+README 
+  Text file with general information about the CalcYouLater.
+
+paser.cyl
+  Testing file used for testing parser.cpp
+
+addsub.cylc
+  Testing file used for testing addition and subtraction for
+  the CalcYouLater. Also tested errors with bools and rstrings.
+
+multdivmod.cylc
+  Testing file used for testing multiplication, division, and 
+  mod for the CalcYouLater. Also tested errors with bools and 
+  rstrings.
+
+othercommands.cylc
+  Testing file used for testing not, swap, drop, clear, print, 
+  and dup for the CalcYouLater.
+
+exectest.cylc
+  Testing file used for testing the exec function for the 
+  CalcYouLater. List of rstrings that were exec'd and the 
+  results were printed and diff tested.
+
+filetest.cylc
+  Testing file used for testing the file function for the
+  CalcYouLater. Calls every function the file at least once
+  and also calls other files winthin the file.
+  Also tests the quit function before other commands.
+
+iftest.cylc
+  Testing file used for the testing if function for the
+  CalcYouLater. Includes cases with and without rstrings.
+
+Data Structures:
+  For this project stacks were used. It was implemented using 
+  a vector because c++ has a built in vector library, and it was
+  the easiest option. Stacks are unique because elements are 
+  added and removed from the top. Elements at the bottom of the 
+  stack are never touched until they reach the top. Stacks are last 
+  in first out data structures. Stacks were used for this project 
+  because in RPN notation, expressions can be easily solved with stacks.
+  Additionally using commands on previous elements makes it easier
+  to keep track and visualize. Stacks can be really useful when
+  reversing a string. taking the first letter off the string and
+  adding it to a stack and then continuing through the string.
+  Popping the elements off the stack adding the characters to the 
+  back of a string can easily reverse any string. Stacks also 
+  illustrate doing tasks, when in the middle of a task and
+  switching tasks(adding a new task to the stack) then 
+  popping this task off the stack when complete and going
+  back to the task that was on had previously.
+
+Testing:
+  Unit testing was used for the DatumStack class
+  and every function was tested with and empty DatumStack
+  and a populated one. parser.cyl was used for testing parser.cpp
+  on many different rstrings. The main function in parser.cpp
+  helped in printing the ouput from the parser.cyl input.
+  For RPNCalc, testing files were made for each command and
+  diff tested for all kinds of cases including invalid ones.
+  Additional testing was also done through cin and terminal.
+  Addsub.cylc tested the add and subtract commands with various
+  integers and also invalid cases with rstrings and booleans.
+  multdivmod.cylc tested the multiply, divide, and mod 
+  commands with various integers and also invalid cases with 
+  rstrings and booleans. 
+  othercommands.cylc tests the not, drop, clear, dup, swap 
+  functions. A large stack was created and the commands were rapid
+  fired and the results were printed to compare the outputs.
+  print was tested throughout all the testing files.
+  exectest.cylc included rstrings that were exec'd and printed
+  to compare output.
+  filetest.cylc included all commands in one file and also is the
+  only test file with the quit command and includes some commands 
+  after the quit function which do not run.
+  All other files end when the last command is typed.
+  iftest.cylc includes various cases of the if function with non 
+  rstrings and non bools. 
+  All of these were diff tested with theCalcYouLater.
+
+Time: 40 hrs
